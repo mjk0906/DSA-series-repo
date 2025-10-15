@@ -22,6 +22,9 @@ if (n>=5){
 } else {
     cout << "the value of n entered is lesser than 5 " << endl ;
 }
+// do while loops in cpp 
+
+
 
 return 0 ;
 }
