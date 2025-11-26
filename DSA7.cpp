@@ -18,13 +18,29 @@ int decTobin(int n )
 
 }
 
-int main()
-{
-    for(int i = 1 ; i<=10 ; i++)
+
+
+long binTodec(long n)
+ {
+    long ans = 0 ;
+    long p = 1 ;
+    while (n > 0) 
     {
-        cout << decTobin(i) << endl;
         
+        int rem = n%10 ;
+        n = n/10 ;
+        ans += rem*p ;
+        p *= 2 ;
     }
-    return 0 ;
+    return ans ;
 }
 
+int main()
+{
+    //for(int i = 1 ; i<=10 ; i++)
+    // {
+    //     cout << decTobin(i) << endl;
+    //}
+    cout << binTodec (10010) << endl ;
+    return 0 ;
+}
