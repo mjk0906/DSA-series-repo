@@ -41,6 +41,6 @@ int main()
     // {
     //     cout << decTobin(i) << endl;
     //}
-    cout << binTodec (10010) << endl ;
+    cout << binTodec (10110) << endl ;
     return 0 ;
 }
