@@ -89,7 +89,17 @@ void topview(Node* root){
     }
     cout<<endl ;
 } //tc is O(nlogn)
-
+void kthlevel(Node* root,int k){
+    if(root==NULL){
+        return ;
+    }
+    if(k==1){
+        cout<<root->data<<" " ;
+        return ;
+    }
+    kthlevel(root->left,k-1);
+    kthlevel(root->right,k-1);
+}
 
 
 int main(){
@@ -107,6 +117,8 @@ int main(){
         cout<<"false"<<endl;
     }
     topview(root1);
+    kthlevel(root1,2);
+    cout<<endl ;
     return 0 ;
     //level order traversal
     // cout<< root->right->left->data <<endl ;
