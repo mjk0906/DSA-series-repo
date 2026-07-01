@@ -100,7 +100,16 @@ void kthlevel(Node* root,int k){
     kthlevel(root->left,k-1);
     kthlevel(root->right,k-1);
 }
+int sumtree(Node* root){
+    if(root==NULL){
+        return 0 ;
+    }
+    int leftSum = sumtree(root->left);
+    int rightSum = sumtree(root->right);
+    root->data+=leftSum + rightSum ;
+    return root->data ;
 
+}
 
 int main(){
     vector<int> preorder1 = {1,2,-1,-1,3,4,-1,-1,5,-1,-1} ;
@@ -119,6 +128,9 @@ int main(){
     topview(root1);
     kthlevel(root1,2);
     cout<<endl ;
+    sumtree(root1);
+    inorder(root1);
+    cout<<endl;
     return 0 ;
     //level order traversal
     // cout<< root->right->left->data <<endl ;
