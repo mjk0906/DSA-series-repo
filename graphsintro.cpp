@@ -37,6 +37,50 @@ public:
             }
             cout<<endl;
     }
+    bool isCycleDFS(int src,int par,vector<bool>&vis){
+        vis[src]=true;
+        for(int v : l[src]){
+            if(!vis[v]){
+                if(isCycleDFS(v,src,vis)){
+                    return true ;
+                }
+            }else if(v!=par){
+                return true ;
+            }
+        }
+        return false ;
+    }
+    bool isCycleBFS(int src, vector<bool> vis){
+        queue<pair<int,int>> q ;
+        q.push({src,-1});
+        vis[src] = true;
+        while(q.size()>0){
+            int u = q.front().first;
+            int par = q.front().second ;
+            q.pop();
+            for(int v : l[u]){
+                if(!vis[v]){
+                    q.push({v,u});
+                    vis[v]=true ;
+                }else if(v!=par){
+                    return true ;
+                }
+            }
+        }
+        return false ;
+    }
+    bool isCycle(){
+        int src = 0 ;
+        vector<bool> vis(V,false);
+        for(int i=0 ;i<V ;i++){
+            if(!vis[i]){
+                if(isCycleBFS(src,vis)){
+                    return true ;
+                }
+            }
+        }
+        return false ;
+    }
     void dfsHelper(int u,vector<bool>&vis){
         cout<<u<<" " ;
         vis[u]=true;
@@ -107,5 +151,6 @@ int main(){
     m.bfs();
     n.bfs();
     g.dfs();
-
+ // cout<< g.isCycle() << endl ;
+    cout<< n.isCycle() <<endl ;
 }
