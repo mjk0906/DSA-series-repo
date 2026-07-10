@@ -3,6 +3,7 @@
 #include <queue>
 #include <map>
 #include <list> 
+#include <stack>
 
 using namespace std ;
 
@@ -111,6 +112,75 @@ public:
         }
     }
 };
+class GraphDir{
+public:
+    int V ;
+    list<int> *l ;
+    GraphDir(int val){
+        V= val ;
+        l = new list<int> [V] ;
+    }
+
+    void addedge(int u , int v){
+        l[u].push_back(v) ;
+    }
+
+    bool isCycleDirdfs(int curr,vector<bool>& vis,vector<bool>& recPath){
+        vis[curr]=true;
+        recPath[curr]=true;
+
+        for(int v : l[curr]){
+            if(!vis[v]){
+                if(isCycleDirdfs(v,vis,recPath)){
+                    return true;
+                }
+            }
+            if(recPath[v]){
+                return true;
+            }
+        }
+        recPath[curr]=false ;
+        return false ;
+    }
+    bool isCycleDir(){
+        vector<bool> vis(V,false);
+        vector<bool> recPath(V,false);
+
+        for(int i=0 ; i<V ; i++){
+            if(!vis[i]){
+                if(isCycleDirdfs(i,vis,recPath)){
+                    return true;
+                }
+            }
+        }
+        return false ;
+    }
+    void dfsTopo(int curr,vector<bool> &vis,stack<int>& s){
+        vis[curr]=true;
+        for(int v : l[curr]){
+            if(!vis[v]){
+                dfsTopo(v,vis,s);
+            }
+        }
+        s.push(curr);
+    }
+    void topoSort(){
+        stack<int> s ;
+        vector<bool> vis(V,false);
+
+        for(int i=0 ;i<V ;i++){
+            if(!vis[i]){
+                dfsTopo(i,vis,s);
+            }
+        }
+        while(s.size()>0){
+            int curr = s.top();
+            s.pop();
+            cout<<curr<<" " ;
+        }
+        cout<<endl;
+    }
+};
 
 int main(){
     Graph g(5) ;
@@ -144,7 +214,19 @@ int main(){
     n.addedge(4,5);
     n.addedge(0,5);
 
+    GraphDir x(4);
+    x.addedge(1,0);
+    x.addedge(0,2);
+    x.addedge(2,3);
+    x.addedge(3,0);
 
+    GraphDir e(6);
+    e.addedge(3, 1);
+    e.addedge(2, 3);
+    e.addedge(4, 0);
+    e.addedge(4, 1);
+    e.addedge(5, 0);
+    e.addedge(5, 3);
     // g.printAlledges() ;
     g.bfs();
     h.bfs();
@@ -152,5 +234,8 @@ int main(){
     n.bfs();
     g.dfs();
  // cout<< g.isCycle() << endl ;
-    cout<< n.isCycle() <<endl ;
+    cout<< x.isCycleDir() <<endl ;
+    e.topoSort();
+
+    return 0;
 }
