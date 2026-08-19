@@ -9,6 +9,7 @@ public:
         }
         return adj ;
     }
+    //this is nothing but kahn's algo
     vector<int> bfsTopo(int n,vector<vector<int>>&edges){
         vector<int> inDeg(n,0);
         vector<vector<int>> adj = createAdjList(n,edges) ;
@@ -46,4 +47,4 @@ public:
             return {};
         }
     }
-};
+}; //each node gets pushed only once here, this is not a reccursive function to get stuck in loop therefore we check the size of ans, if the size is not equal to n then we cannot complete all the courses
