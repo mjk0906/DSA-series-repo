@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    vector<long long> factorialNumbers(long long n) {
+        // Write Your Code here
+        long long fact = 1 ;
+        int i = 1 ;
+        vector<long long> ans ;
+        while(fact<=n){
+            ans.push_back(fact) ;
+            i++ ;
+            fact*=i ;
+        }
+        return ans ;
+    }
+};
+//easy problem, be careful while revising
