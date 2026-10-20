@@ -20,3 +20,5 @@ public:
         return solve(x,power) ;
     }
 };
+//easy only but double limit issues will come check with it 
+//leetcode pe check karo 
