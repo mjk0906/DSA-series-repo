@@ -63,13 +63,13 @@ function Tempo(){ //first letter capital in the name of fn
 
 root.render(
   <>
-    <ElementalHeader/>
-    <Tempo/>
+    <App/>
+    {/* <ElementalHeader/>
+    <Tempo/> */}
   </>
   // <div>
   //   <h1 className = "header">This is Decalarative coding</h1>
   //   <img src = "reactlogo.svg" />
   // </div>
   //we can also use main,article containers also
-
-) 
+)
